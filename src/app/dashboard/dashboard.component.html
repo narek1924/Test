@@ -1,7 +1,41 @@
 <div class="container">
-  <header></header>
+  <header>
+    <div class="profile-info" *ngIf="!(isSmallScreen$ | async)">
+      <img src="/assets/icons/profile-icon.png" alt="" class="profile-pic" />
+      <div class="info">
+        <div class="name">Иванов</div>
+        <div class="role">Администратор</div>
+      </div>
+      <span class="triangle-icon">&#8227;</span>
+    </div>
+    <div
+      (click)="sideBar.toggle(); isHamburguer = !isHamburguer"
+      class="btn"
+      *ngIf="isSmallScreen$ | async"
+    >
+      <div
+        class="icon-bar"
+        [@hamburguerX]="isHamburguer ? 'hamburguer' : 'topX'"
+      ></div>
+      <div
+        class="icon-bar"
+        [@hamburguerX]="isHamburguer ? 'hamburguer' : 'hide'"
+      ></div>
+      <div
+        class="icon-bar"
+        [@hamburguerX]="isHamburguer ? 'hamburguer' : 'bottomX'"
+      ></div>
+    </div>
+  </header>
   <mat-drawer-container>
-    <mat-drawer mode="side" opened> <app-side-bar></app-side-bar></mat-drawer>
+    <mat-drawer
+      [mode]="!(isSmallScreen$ | async) ? 'side' : 'over'"
+      [position]="!(isSmallScreen$ | async) ? 'start' : 'end'"
+      #sideBar
+      [opened]="!(isSmallScreen$ | async)"
+    >
+      <app-side-bar></app-side-bar
+    ></mat-drawer>
     <mat-drawer-content>
       <div class="main-content">
         <div class="content-header">

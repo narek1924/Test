@@ -103,8 +103,8 @@
       <button type="submit" [disabled]="form.invalid">
         {{ inputType === "filter" ? "Применить" : "Создать" }}
       </button>
-      <button>Отмена</button>
-      <button>Сбросить</button>
+      <button class="button-gray" (click)="cancel()">Отмена</button>
+      <button class="button-gray" (click)="reset()">Сбросить</button>
     </div>
   </form>
 </div>

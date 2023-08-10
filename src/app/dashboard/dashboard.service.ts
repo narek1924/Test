@@ -10,6 +10,11 @@ export class DashboardService {
   modifyUsers = new BehaviorSubject<any>(null);
 
   constructor() {}
+  filterReset() {
+    if (this.filterParams.value) {
+      this.filterParams.next(null);
+    }
+  }
   changeInputType(type: string) {
     const prev = this.inputType.value;
     if (type === prev) {

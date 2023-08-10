@@ -1,19 +1,29 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Subscription, map } from 'rxjs';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
 import { enterLeaveAnimation } from '../shared/enter-leave-animation';
 import { DashboardService } from './dashboard.service';
-import { Subscription } from 'rxjs';
+import { hamburgerAnimation } from '../shared/hamburger-menu-animation';
 
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css'],
-  animations: [enterLeaveAnimation],
+  animations: [enterLeaveAnimation, hamburgerAnimation],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
   inputType = '';
   modifyUsers = '';
   subscription!: Subscription;
-  constructor(private dashBoardService: DashboardService) {}
+  isHamburguer = true;
+  isSmallScreen$ = this.breakpointObserver
+    .observe(['(max-width: 1024px)'])
+    .pipe(map((result: any) => result.matches));
+  constructor(
+    private dashBoardService: DashboardService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
   ngOnInit(): void {
     this.subscription = this.dashBoardService.inputType.subscribe((type) => {

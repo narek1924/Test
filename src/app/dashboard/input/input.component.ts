@@ -1,12 +1,5 @@
-import {
-  Component,
-  OnInit,
-  OnChanges,
-  OnDestroy,
-  Input,
-  ChangeDetectorRef,
-} from '@angular/core';
-import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+import { FormBuilder, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from 'src/app/data-storage/data-storage.service';
 import { DashboardService } from '../dashboard.service';
@@ -27,7 +20,6 @@ export class InputComponent implements OnInit, OnDestroy {
   constructor(
     private formBuilder: FormBuilder,
     private dataService: DataStorageService,
-    private cdRef: ChangeDetectorRef,
     private dashboardService: DashboardService
   ) {}
   form = this.formBuilder.group({
@@ -72,6 +64,14 @@ export class InputComponent implements OnInit, OnDestroy {
         });
       }
     );
+  }
+  reset() {
+    this.form.reset();
+    this.dashboardService.filterReset();
+  }
+  cancel() {
+    this.dashboardService.inputType.next('');
+    this.dashboardService.filterReset();
   }
   formSubmit() {
     if (this.inputType === 'add') {
