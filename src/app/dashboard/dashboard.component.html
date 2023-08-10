@@ -1,1 +1,61 @@
-<p>dashboard works!</p>
+<div class="container">
+  <header></header>
+  <mat-drawer-container>
+    <mat-drawer mode="side" opened> <app-side-bar></app-side-bar></mat-drawer>
+    <mat-drawer-content>
+      <div class="main-content">
+        <div class="content-header">
+          <div class="text-with-icon">
+            <img src="/assets/icons/back-icon.png" />
+            Назад
+          </div>
+        </div>
+        <h1>Настройка учетных записей сотрудников контрагента</h1>
+        <div class="actions">
+          <div class="edit-buttons">
+            <button
+              (click)="inputToggle('add')"
+              [class.input-type-choosen]="inputType === 'add'"
+            >
+              <div class="text-with-icon">
+                Добавить
+                <img src="/assets/icons/add-icon.png" alt="" />
+              </div>
+            </button>
+            <button (click)="modify('active')">
+              <div class="text-with-icon">
+                Разблокировать
+                <img src="/assets/icons/checked-icon.png" alt="" />
+              </div>
+            </button>
+            <button (click)="modify('blocked')">
+              <div class="text-with-icon">
+                Заблокировать
+                <img src="/assets/icons/x-icon.png" alt="" />
+              </div>
+            </button>
+          </div>
+          <button
+            (click)="inputToggle('filter')"
+            [class.input-type-choosen]="inputType === 'filter'"
+          >
+            <div class="text-with-icon">
+              <img
+                class="filter-icon"
+                src="/assets/icons/filter-icon.svg"
+                alt=""
+              />
+              Фильтр
+            </div>
+          </button>
+        </div>
+        <app-input
+          @trigger
+          [inputType]="inputType"
+          *ngIf="inputType"
+        ></app-input>
+        <app-table [modifyUsers]="modifyUsers"></app-table>
+      </div>
+    </mat-drawer-content>
+  </mat-drawer-container>
+</div>

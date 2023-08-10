@@ -1,5 +1,46 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+* {
+  box-sizing: border-box;
+}
 html,
 body {
-  padding: 0;
+  height: 100%;
+}
+body {
   margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.text-with-icon {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+.mat-form-field-infix {
+  border: none;
+}
+.mat-elevation-z8 {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+button {
+  height: 40px;
+  padding: 8px 15px;
+  margin-right: 15px;
+  margin-bottom: 5px;
+  background-color: #da2032;
+  border: none;
+  outline: none;
+  border-radius: 8px;
+  color: white;
+  cursor: pointer;
+  &:active {
+    transform: scale(0.98);
+  }
 }

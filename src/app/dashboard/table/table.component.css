@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+}
+th {
+  background-color: #da2032;
+  color: white;
+  width: 100px;
+  text-align: center;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.mat-cell {
+  max-width: 120px;
+  text-align: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.mat-header-cell {
+  text-align: center;
+  width: 100px;
+}
+.login-with-checkbox {
+  display: flex;
+  gap: 3px;
+  align-items: center;
+}
+.delete-icon {
+  cursor: pointer;
+  &:hover {
+    filter: invert(22%) sepia(85%) saturate(2805%) hue-rotate(340deg)
+      brightness(86%) contrast(100%);
+  }
+}

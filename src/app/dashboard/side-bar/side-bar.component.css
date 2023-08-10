@@ -1,7 +1,34 @@
 .container {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 15px;
   width: 100%;
   height: 100%;
+  padding: 15px;
+  background-color: #666f78;
+  color: white;
+  cursor: default;
+}
+
+.triangle-icon {
+  transform: rotate(90deg);
+  cursor: pointer;
+  &:hover {
+    color: #da2032;
+  }
+}
+.agent {
+  margin: 10px auto 0;
+}
+h2 {
+  font-size: 20px;
+}
+.managment {
+  margin: 0 -15px;
+  padding: 15px;
+  background-color: #a2a9b1;
+}
+.managment-routes {
+  margin-top: 15px;
+  font-size: 13px;
 }

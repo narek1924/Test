@@ -1,0 +1,110 @@
+<div class="container">
+  <div class="header">Фильтр</div>
+  <form [formGroup]="form" (submit)="formSubmit()">
+    <div class="controls">
+      <div class="control">
+        <mat-label>Логин</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="login" />
+          <mat-error *ngIf="form.get('login')!.invalid">{{
+            form.get("login")!.errors!["required"]
+              ? "Поле не должно быть пустым"
+              : form.get("login")!.errors!["message"]
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="control">
+        <mat-label>Телефон</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="phone" />
+          <mat-error *ngIf="form.get('phone')!.invalid">{{
+            form.get("phone")!.errors!["required"]
+              ? "Поле не должно быть пустым"
+              : form.get("phone")!.errors!["message"]
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="control" *ngIf="inputType === 'filter'">
+        <mat-label>Дата создания</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            readonly
+            matInput
+            [matDatepicker]="picker"
+            formControlName="creationTime"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <div class="control">
+        <mat-label>Статус</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="status">
+            <mat-option value="active">Активен</mat-option>
+            <mat-option value="blocked">Заблокирован</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="control">
+        <mat-label>E-mail</mat-label>
+        <mat-form-field appearance="outline">
+          <input matInput formControlName="email" />
+          <mat-error *ngIf="form.get('email')!.invalid">{{
+            form.get("email")!.errors!["required"]
+              ? "Поле не должно быть пустым"
+              : form.get("email")!.errors!["message"]
+          }}</mat-error>
+        </mat-form-field>
+      </div>
+      <div class="control">
+        <mat-label>Роль</mat-label>
+        <mat-form-field appearance="outline">
+          <mat-select formControlName="role">
+            <mat-option value="user">пользователь</mat-option>
+            <mat-option value="admin">Администратор</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="control" *ngIf="inputType === 'filter'">
+        <mat-label>Дата изменения</mat-label>
+        <mat-form-field appearance="outline">
+          <input
+            readonly
+            matInput
+            [matDatepicker]="picker"
+            formControlName="updateTime"
+          />
+          <mat-hint>MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+      </div>
+      <section class="text-with-icon">
+        <label>Наличие зарплаты:</label>
+        <mat-radio-group formControlName="salary">
+          <mat-radio-button class="radio-button" [value]="true"
+            >Да
+          </mat-radio-button>
+          <mat-radio-button class="radio-button" [value]="false"
+            >Нет</mat-radio-button
+          >
+        </mat-radio-group>
+      </section>
+    </div>
+    <div class="form-actions">
+      <button type="submit" [disabled]="form.invalid">
+        {{ inputType === "filter" ? "Применить" : "Создать" }}
+      </button>
+      <button>Отмена</button>
+      <button>Сбросить</button>
+    </div>
+  </form>
+</div>
