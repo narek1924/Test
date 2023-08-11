@@ -92,9 +92,13 @@ export class DataStorageService {
             } = filterParams;
             return data.filter((user: User) => {
               return (
-                (login ? user.login === login : true) &&
+                (login
+                  ? user.login.toLowerCase() === login.toLowerCase()
+                  : true) &&
                 (role ? user.role === role : true) &&
-                (email ? user.email === email : true) &&
+                (email
+                  ? user.email.toLowerCase() === email.toLowerCase()
+                  : true) &&
                 (salary ? user.salary === salary : true) &&
                 (creationTime
                   ? this.checkDates(creationTime, user.creationTime as number)

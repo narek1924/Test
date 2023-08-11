@@ -27,7 +27,7 @@
       ></div>
     </div>
   </header>
-  <mat-drawer-container>
+  <mat-drawer-container (backdropClick)="isHamburguer = !isHamburguer">
     <mat-drawer
       [mode]="!(isSmallScreen$ | async) ? 'side' : 'over'"
       [position]="!(isSmallScreen$ | async) ? 'start' : 'end'"

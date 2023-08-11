@@ -120,7 +120,7 @@
     >
     </mat-paginator>
   </div>
-  <div class="no-data" *ngIf="users.length === 0">
+  <div class="no-data" *ngIf="users.length === 0 && !loading">
     Нет пользователей для отображения
   </div>
 </div>
