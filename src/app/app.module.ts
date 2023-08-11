@@ -10,6 +10,7 @@ import { InputComponent } from './dashboard/input/input.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './dashboard/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
+import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { HttpClientModule } from '@angular/common/http';
     SideBarComponent,
     InputComponent,
     TableComponent,
+    LoadingSpinnerComponent,
   ],
   imports: [
     BrowserModule,

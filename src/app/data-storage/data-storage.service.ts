@@ -20,6 +20,7 @@ export interface User {
 })
 export class DataStorageService {
   users = new BehaviorSubject<User[]>([]);
+  loading = new BehaviorSubject<boolean>(false);
   constructor(
     private http: HttpClient,
     private dashBoardService: DashboardService
@@ -58,6 +59,7 @@ export class DataStorageService {
     );
   }
   fetchData(filterParams?: any) {
+    this.loading.next(true);
     this.http
       .get(
         'https://test-task-50465-default-rtdb.europe-west1.firebasedatabase.app/users.json'
@@ -108,6 +110,7 @@ export class DataStorageService {
         )
       )
       .subscribe((data) => {
+        this.loading.next(false);
         this.users.next(data as User[]);
       });
   }

@@ -39,8 +39,9 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   ];
   dataSource!: any;
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  private subscription!: Subscription;
+  private subscription = new Subscription();
   users!: User[];
+  loading = false;
   constructor(
     private dataService: DataStorageService,
     private dashBoardService: DashboardService
@@ -54,11 +55,18 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
     }
   }
   ngOnInit(): void {
-    this.subscription = this.dataService.users.subscribe((users) => {
-      this.users = users as User[];
-      this.dataSource = new MatTableDataSource(this.users as User[]);
-      this.dataSource.paginator = this.paginator;
-    });
+    this.subscription.add(
+      this.dataService.users.subscribe((users) => {
+        this.users = users as User[];
+        this.dataSource = new MatTableDataSource(this.users as User[]);
+        this.dataSource.paginator = this.paginator;
+      })
+    );
+    this.subscription.add(
+      this.dataService.loading.subscribe((condition) => {
+        this.loading = condition;
+      })
+    );
   }
   deleteUser(userId: string) {
     this.selectedUsers = this.selectedUsers.filter((id) => id !== userId);
