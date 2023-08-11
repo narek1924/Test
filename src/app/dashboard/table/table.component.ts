@@ -75,17 +75,23 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   onCheckboxChange(element: string, event: Event) {
     if (element === 'all') {
       if ((event.target as HTMLInputElement).checked) {
+        this.dashBoardService.usersSelected.next(true);
         this.users.map((user) => {
           this.selectedUsers.push(user.id as string);
         });
       } else {
         this.selectedUsers = [];
+        this.dashBoardService.usersSelected.next(false);
       }
     } else {
       if ((event.target as HTMLInputElement).checked) {
         this.selectedUsers.push(element);
+        this.dashBoardService.usersSelected.next(true);
       } else {
         this.selectedUsers = this.selectedUsers.filter((id) => id !== element);
+        if (this.selectedUsers.length === 0) {
+          this.dashBoardService.usersSelected.next(false);
+        }
       }
     }
   }

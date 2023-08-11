@@ -8,26 +8,22 @@
       </div>
       <span class="triangle-icon">&#8227;</span>
     </div>
-    <div
-      (click)="sideBar.toggle(); isHamburguer = !isHamburguer"
-      class="btn"
-      *ngIf="isSmallScreen$ | async"
-    >
+    <div (click)="sideBar.toggle()" class="btn" *ngIf="isSmallScreen$ | async">
       <div
         class="icon-bar"
-        [@hamburguerX]="isHamburguer ? 'hamburguer' : 'topX'"
+        [@hamburguerX]="!sideBar.opened ? 'hamburguer' : 'topX'"
       ></div>
       <div
         class="icon-bar"
-        [@hamburguerX]="isHamburguer ? 'hamburguer' : 'hide'"
+        [@hamburguerX]="!sideBar.opened ? 'hamburguer' : 'hide'"
       ></div>
       <div
         class="icon-bar"
-        [@hamburguerX]="isHamburguer ? 'hamburguer' : 'bottomX'"
+        [@hamburguerX]="!sideBar.opened ? 'hamburguer' : 'bottomX'"
       ></div>
     </div>
   </header>
-  <mat-drawer-container (backdropClick)="isHamburguer = !isHamburguer">
+  <mat-drawer-container>
     <mat-drawer
       [mode]="!(isSmallScreen$ | async) ? 'side' : 'over'"
       [position]="!(isSmallScreen$ | async) ? 'start' : 'end'"
@@ -56,13 +52,13 @@
                 <img src="/assets/icons/add-icon.png" alt="" />
               </div>
             </button>
-            <button (click)="modify('active')">
+            <button (click)="modify('active')" [disabled]="!usersSelected">
               <div class="text-with-icon">
                 Разблокировать
                 <img src="/assets/icons/checked-icon.png" alt="" />
               </div>
             </button>
-            <button (click)="modify('blocked')">
+            <button (click)="modify('blocked')" [disabled]="!usersSelected">
               <div class="text-with-icon">
                 Заблокировать
                 <img src="/assets/icons/x-icon.png" alt="" />

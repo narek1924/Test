@@ -8,6 +8,7 @@ export class DashboardService {
   inputType = new BehaviorSubject<string>('');
   filterParams = new BehaviorSubject<any>(null);
   modifyUsers = new BehaviorSubject<any>(null);
+  usersSelected = new BehaviorSubject<boolean>(false);
 
   constructor() {}
   filterReset() {
@@ -22,7 +23,9 @@ export class DashboardService {
       if (prev === 'add') {
         return;
       }
-      this.filterParams.next(null);
+      if (this.filterParams.value) {
+        this.filterParams.next(null);
+      }
     } else {
       this.inputType.next(type);
     }

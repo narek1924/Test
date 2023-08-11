@@ -11,6 +11,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { TableComponent } from './dashboard/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
+import { PhoneNumberRuPipe } from './shared/phone-number-ru.pipe';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinne
     InputComponent,
     TableComponent,
     LoadingSpinnerComponent,
+    PhoneNumberRuPipe,
   ],
   imports: [
     BrowserModule,

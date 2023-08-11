@@ -88,26 +88,25 @@ app-loading-spinner {
   left: 45%;
   z-index: 15;
 }
-@media (max-width: 700px) {
+@media (max-width: 800px) {
   tr {
     display: flex;
     flex-wrap: wrap;
   }
   .mat-cell {
     max-width: 100%;
-    width: 100%;
+    width: 50%;
+    height: 40px;
+    padding: 0 20px !important;
+    border: 1px solid rgba(183, 183, 183, 0.5);
+    margin-top: -1px;
+    margin-right: -1px;
     display: flex;
     justify-content: space-between;
-    text-align: center;
+    align-items: center;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-  }
-  td.mat-cell:last-of-type {
-    padding: 0;
-  }
-  td.mat-cell:first-of-type {
-    padding: 0;
   }
   .mobile-label {
     width: auto;
@@ -121,12 +120,16 @@ app-loading-spinner {
 
   .mat-row {
     display: flex;
-    flex-direction: column;
     height: auto;
     align-items: start;
-    padding: 8px 24px;
+    padding: 15px 24px;
   }
   .salary-field {
     margin: 0;
+  }
+}
+@media (max-width: 600px) {
+  .mat-cell {
+    width: 100%;
   }
 }

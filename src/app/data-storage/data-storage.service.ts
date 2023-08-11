@@ -27,6 +27,8 @@ export class DataStorageService {
   ) {
     this.dashBoardService.filterParams.subscribe((params) => {
       if (params) {
+        console.log(params);
+
         this.fetchData(params);
       } else this.fetchData();
     });

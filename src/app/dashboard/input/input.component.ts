@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { DataStorageService } from 'src/app/data-storage/data-storage.service';
 import { DashboardService } from '../dashboard.service';
@@ -17,24 +17,28 @@ import {
 export class InputComponent implements OnInit, OnDestroy {
   @Input() inputType!: string;
   private subsription!: Subscription;
+  form!: FormGroup;
   constructor(
-    private formBuilder: FormBuilder,
     private dataService: DataStorageService,
     private dashboardService: DashboardService
   ) {}
-  form = this.formBuilder.group({
-    login: [''],
-    phone: [''],
-    creationTime: [''],
-    status: ['active'],
-    email: [''],
-    role: ['user'],
-    salary: [''],
-    updateTime: [''],
-  });
+
   ngOnInit(): void {
     this.subsription = this.dashboardService.inputType.subscribe(
       (type: string) => {
+        if (type) {
+          this.form = new FormGroup({
+            login: new FormControl(''),
+            phone: new FormControl(''),
+            creationTime: new FormControl(''),
+            status: new FormControl('active', { nonNullable: true }),
+            email: new FormControl(''),
+            role: new FormControl('user', { nonNullable: true }),
+            salary: new FormControl(''),
+            updateTime: new FormControl(''),
+          });
+        }
+        // this.form.reset();
         if (type === 'add') {
           this.form
             .get('login')

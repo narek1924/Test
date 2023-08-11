@@ -36,6 +36,9 @@ export function phoneNumberValidator(
   if (!numericPattern.test(control.value)) {
     return { pattern: true, message: 'Номер должен содержать только числа' };
   }
+  if (control.value.length < 8) {
+    return { length: true, message: 'Номер слишком короткий' };
+  }
 
   return null;
 }

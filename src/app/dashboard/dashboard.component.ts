@@ -15,8 +15,8 @@ import { hamburgerAnimation } from '../shared/hamburger-menu-animation';
 export class DashboardComponent implements OnInit, OnDestroy {
   inputType = '';
   modifyUsers = '';
-  subscription!: Subscription;
-  isHamburguer = true;
+  usersSelected = false;
+  subscription = new Subscription();
   isSmallScreen$ = this.breakpointObserver
     .observe(['(max-width: 1024px)'])
     .pipe(map((result: any) => result.matches));
@@ -26,9 +26,18 @@ export class DashboardComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.subscription = this.dashBoardService.inputType.subscribe((type) => {
-      this.inputType = type;
-    });
+    this.subscription.add(
+      this.dashBoardService.inputType.subscribe((type) => {
+        this.inputType = type;
+      })
+    );
+    this.subscription.add(
+      this.dashBoardService.usersSelected.subscribe((condition) => {
+        console.log(condition);
+
+        this.usersSelected = condition;
+      })
+    );
   }
   modify(type: string): void {
     this.modifyUsers = type;

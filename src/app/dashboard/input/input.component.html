@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="header">Фильтр</div>
+  <div class="header">{{ inputType === "filter" ? "Фильтр" : "Добавить" }}</div>
   <form [formGroup]="form" (submit)="formSubmit()">
     <div class="controls">
       <div class="control">
@@ -41,7 +41,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <div class="control">
+      <div class="control" *ngIf="inputType === 'filter'">
         <mat-label>Статус</mat-label>
         <mat-form-field appearance="outline">
           <mat-select formControlName="status">
@@ -103,8 +103,12 @@
       <button type="submit" [disabled]="form.invalid">
         {{ inputType === "filter" ? "Применить" : "Создать" }}
       </button>
-      <button class="button-gray" (click)="cancel()">Отмена</button>
-      <button class="button-gray" (click)="reset()">Сбросить</button>
+      <button class="button-gray" type="button" (click)="cancel()">
+        Отмена
+      </button>
+      <button class="button-gray" type="button" (click)="reset()">
+        Сбросить
+      </button>
     </div>
   </form>
 </div>
