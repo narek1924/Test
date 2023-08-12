@@ -33,8 +33,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
     );
     this.subscription.add(
       this.dashBoardService.usersSelected.subscribe((condition) => {
-        console.log(condition);
-
         this.usersSelected = condition;
       })
     );

@@ -7,8 +7,10 @@ th {
 th.mat-sort-header-sorted {
   color: black;
 }
+
 .mat-cell {
   max-width: 120px;
+  padding: 0 5px;
   text-align: center;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -22,6 +24,9 @@ th.mat-sort-header-sorted {
   display: flex;
   gap: 3px;
   align-items: center;
+}
+th > .login-with-checkbox {
+  padding: 0 5px;
 }
 .delete-icon {
   cursor: pointer;
@@ -87,6 +92,25 @@ app-loading-spinner {
   top: 40%;
   left: 45%;
   z-index: 15;
+}
+:host ::ng-deep.mat-paginator .mat-paginator-container {
+  justify-content: flex-start;
+  padding: 0 25px;
+  flex-wrap: wrap;
+}
+.table-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  background-color: white;
+}
+.selected-users {
+  padding: 0 25px;
+}
+@media (max-width: 880px) {
+  td {
+    font-size: 12px;
+  }
 }
 @media (max-width: 800px) {
   tr {

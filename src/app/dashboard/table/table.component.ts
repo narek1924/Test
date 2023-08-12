@@ -8,7 +8,7 @@ import {
   OnChanges,
   SimpleChanges,
 } from '@angular/core';
-import { MatPaginator } from '@angular/material/paginator';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import {
   DataStorageService,
@@ -59,7 +59,10 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
       this.dataService.users.subscribe((users) => {
         this.users = users as User[];
         this.dataSource = new MatTableDataSource(this.users as User[]);
-        this.dataSource.paginator = this.paginator;
+        setTimeout(() => {
+          this.dataSource.paginator = this.paginator;
+          this.translateMatPaginator(this.paginator);
+        }, 0);
       })
     );
     this.subscription.add(
@@ -70,6 +73,9 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
   }
   deleteUser(userId: string) {
     this.selectedUsers = this.selectedUsers.filter((id) => id !== userId);
+    if (this.selectedUsers.length === 0) {
+      this.dashBoardService.usersSelected.next(false);
+    }
     this.dataService.deleteUser(userId);
   }
   onCheckboxChange(element: string, event: Event) {
@@ -104,6 +110,18 @@ export class TableComponent implements OnInit, OnChanges, OnDestroy {
       '.' +
       date.getFullYear()
     );
+  }
+  syncPrimaryPaginator(event: PageEvent) {
+    this.paginator.pageIndex = event.pageIndex;
+    this.paginator.pageSize = event.pageSize;
+    this.paginator.page.emit(event);
+  }
+  translateMatPaginator(paginator: MatPaginator) {
+    paginator._intl.firstPageLabel = 'Первая страница';
+    paginator._intl.itemsPerPageLabel = 'Отображать';
+    paginator._intl.lastPageLabel = 'Последняя страница';
+    paginator._intl.nextPageLabel = 'Следуюшая страница';
+    paginator._intl.previousPageLabel = 'Предыдущая страница';
   }
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

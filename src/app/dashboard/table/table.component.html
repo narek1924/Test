@@ -1,6 +1,19 @@
 <div class="loading">
   <app-loading-spinner *ngIf="loading"></app-loading-spinner>
   <div class="mat-elevation-z8" *ngIf="users.length > 0">
+    <div class="table-info">
+      <mat-paginator
+        [pageSizeOptions]="[5, 10, 20]"
+        showFirstLastButtons
+        aria-label="Select page of users"
+        #paginator
+      >
+      </mat-paginator>
+      <div class="selected-users">
+        {{ "Количество выбранных элементов: " + selectedUsers.length }}
+      </div>
+    </div>
+
     <table mat-table [dataSource]="dataSource">
       <!-- Position Column -->
       <ng-container matColumnDef="actions">
@@ -40,6 +53,7 @@
           >
           <div class="login-with-checkbox">
             <input
+              class="checkbox"
               type="checkbox"
               (change)="onCheckboxChange(element.id, $event)"
               [checked]="selectedUsers.includes(element.id)"
@@ -114,13 +128,20 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
     </table>
-
-    <mat-paginator
-      [pageSizeOptions]="[5, 10, 20]"
-      showFirstLastButtons
-      aria-label="Select page of users"
-    >
-    </mat-paginator>
+    <div class="table-info">
+      <mat-paginator
+        (page)="syncPrimaryPaginator($event)"
+        [pageSizeOptions]="paginator.pageSizeOptions"
+        [pageSize]="paginator.pageSize"
+        [pageIndex]="paginator.pageIndex"
+        [length]="paginator.length"
+        showFirstLastButtons
+      >
+      </mat-paginator>
+      <div class="selected-users">
+        {{ "Количество выбранных элементов: " + selectedUsers.length }}
+      </div>
+    </div>
   </div>
   <div class="no-data" *ngIf="users.length === 0 && !loading">
     Нет пользователей для отображения
