@@ -11,7 +11,7 @@ export interface User {
   status: string;
   email: string;
   role: string;
-  salary: string;
+  salary: boolean;
   id?: string;
   updateTime?: number;
 }
@@ -93,15 +93,17 @@ export class DataStorageService {
               status,
             } = filterParams;
             return data.filter((user: User) => {
+              console.log(salary, user.salary);
+
               return (
                 (login
-                  ? user.login.toLowerCase() === login.toLowerCase()
+                  ? user.login.toLowerCase().includes(login.toLowerCase())
                   : true) &&
                 (role ? user.role === role : true) &&
                 (email
                   ? user.email.toLowerCase() === email.toLowerCase()
                   : true) &&
-                (salary ? user.salary === salary : true) &&
+                salary === user.salary &&
                 (creationTime
                   ? this.checkDates(creationTime, user.creationTime as number)
                   : true) &&
@@ -137,7 +139,7 @@ export class DataStorageService {
     status: string,
     email: string,
     role: string,
-    salary: string
+    salary: boolean
   ) {
     const user: User = {
       login,

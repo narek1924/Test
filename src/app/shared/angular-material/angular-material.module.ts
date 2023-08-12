@@ -12,6 +12,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatTableModule } from '@angular/material/table';
 import { MatRadioModule } from '@angular/material/radio';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [],
@@ -27,6 +28,7 @@ import { MatRadioModule } from '@angular/material/radio';
     MatTableModule,
     MatPaginatorModule,
     MatRadioModule,
+    MatCheckboxModule,
   ],
   providers: [MatDatepickerModule],
 })

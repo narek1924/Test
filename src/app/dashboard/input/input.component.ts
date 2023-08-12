@@ -34,7 +34,7 @@ export class InputComponent implements OnInit, OnDestroy {
             status: new FormControl('active', { nonNullable: true }),
             email: new FormControl(''),
             role: new FormControl('user', { nonNullable: true }),
-            salary: new FormControl(''),
+            salary: new FormControl(false, { nonNullable: true }),
             updateTime: new FormControl(''),
           });
         }

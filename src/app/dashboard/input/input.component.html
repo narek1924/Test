@@ -89,14 +89,12 @@
       </div>
       <section class="text-with-icon">
         <label>Наличие зарплаты:</label>
-        <mat-radio-group formControlName="salary">
-          <mat-radio-button class="radio-button" [value]="true"
-            >Да
-          </mat-radio-button>
-          <mat-radio-button class="radio-button" [value]="false"
-            >Нет</mat-radio-button
-          >
-        </mat-radio-group>
+        <mat-checkbox
+          class="example-margin"
+          color="accent"
+          formControlName="salary"
+        >
+        </mat-checkbox>
       </section>
     </div>
     <div class="form-actions">

@@ -37,8 +37,9 @@ mat-drawer {
 }
 .input-type-choosen {
   background-color: #c4c6c9;
-  /* filter: invert(64%) sepia(0%) saturate(7479%) hue-rotate(276deg)
-    brightness(82%) contrast(84%); */
+}
+button {
+  transition: background-color 200ms linear;
 }
 
 .filter-icon {
