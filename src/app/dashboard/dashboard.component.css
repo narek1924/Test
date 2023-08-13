@@ -39,7 +39,7 @@ mat-drawer {
   background-color: #c4c6c9;
 }
 button {
-  transition: background-color 200ms linear;
+  transition: background-color, box-shadow 200ms linear;
 }
 
 .filter-icon {

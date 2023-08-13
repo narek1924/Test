@@ -28,7 +28,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  background: #555;
+  background: #c91124;
 }
 .text-with-icon {
   display: flex;
