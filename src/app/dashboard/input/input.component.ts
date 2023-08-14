@@ -92,6 +92,7 @@ export class InputComponent implements OnInit, OnDestroy {
           .subscribe((res) => {
             console.log(res);
           });
+        this.form.reset();
       }
     } else {
       if (this.form.valid) {
