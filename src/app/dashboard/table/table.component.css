@@ -107,6 +107,16 @@ app-loading-spinner {
 .selected-users {
   padding: 0 25px;
 }
+.loading__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  opacity: 0.6;
+  z-index: 10;
+}
 @media (max-width: 880px) {
   td {
     font-size: 12px;

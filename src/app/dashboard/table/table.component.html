@@ -1,4 +1,5 @@
 <div class="loading">
+  <div class="loading__background" *ngIf="loading"></div>
   <app-loading-spinner *ngIf="loading"></app-loading-spinner>
   <div class="mat-elevation-z8" *ngIf="users.length > 0">
     <div class="table-info">

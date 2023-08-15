@@ -87,7 +87,7 @@
           <mat-datepicker #picker></mat-datepicker>
         </mat-form-field>
       </div>
-      <section class="text-with-icon">
+      <section class="text-with-icon" *ngIf="inputType === 'add'">
         <label>Наличие зарплаты:</label>
         <mat-checkbox
           class="example-margin"

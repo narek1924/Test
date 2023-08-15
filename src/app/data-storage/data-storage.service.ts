@@ -103,7 +103,6 @@ export class DataStorageService {
                 (email
                   ? user.email.toLowerCase() === email.toLowerCase()
                   : true) &&
-                salary === user.salary &&
                 (creationTime
                   ? this.checkDates(creationTime, user.creationTime as number)
                   : true) &&

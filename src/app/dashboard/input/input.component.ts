@@ -101,13 +101,11 @@ export class InputComponent implements OnInit, OnDestroy {
         const phone = this.form.value.phone;
         const status = this.form.value.status;
         const role = this.form.value.role;
-        const salary = this.form.value.salary;
         const creationTime = this.form.value.creationTime;
         const updateTime = this.form.value.updateTime;
         this.dashboardService.filterParams.next({
           login,
           role,
-          salary,
           creationTime,
           updateTime,
           email,
