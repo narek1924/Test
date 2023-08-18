@@ -1,7 +1,10 @@
 <div class="container">
   <header>
     <div class="profile-info" *ngIf="!(isSmallScreen$ | async)">
-      <img src="/assets/icons/profile-icon.png" alt="" class="profile-pic" />
+      <div class="avatar">
+        <img src="/assets/icons/profile-icon.png" alt="" />
+      </div>
+
       <div class="info">
         <div class="name">Иванов</div>
         <div class="role">Администратор</div>
@@ -43,32 +46,26 @@
         <h1>Настройка учетных записей сотрудников контрагента</h1>
         <div class="actions">
           <div class="edit-buttons">
-            <button
-              (click)="inputToggle('add')"
-              [class.input-type-choosen]="inputType === 'add'"
-            >
+            <button disabled>
               <div class="text-with-icon">
                 Добавить
                 <img src="/assets/icons/add-icon.png" alt="" />
               </div>
             </button>
-            <button (click)="modify('active')" [disabled]="!usersSelected">
+            <button (click)="modify('ACTIVE')" [disabled]="!usersSelected">
               <div class="text-with-icon">
                 Разблокировать
                 <img src="/assets/icons/checked-icon.png" alt="" />
               </div>
             </button>
-            <button (click)="modify('blocked')" [disabled]="!usersSelected">
+            <button (click)="modify('BLOCKED')" [disabled]="!usersSelected">
               <div class="text-with-icon">
                 Заблокировать
                 <img src="/assets/icons/x-icon.png" alt="" />
               </div>
             </button>
           </div>
-          <button
-            (click)="inputToggle('filter')"
-            [class.input-type-choosen]="inputType === 'filter'"
-          >
+          <button (click)="filterToggle()" [class.input-type-choosen]="filter">
             <div class="text-with-icon">
               <img
                 class="filter-icon"
@@ -79,12 +76,11 @@
             </div>
           </button>
         </div>
-        <app-input
-          @trigger
-          [inputType]="inputType"
-          *ngIf="inputType"
-        ></app-input>
-        <app-table [modifyUsers]="modifyUsers"></app-table>
+        <app-input @trigger *ngIf="filter" (close)="filter = false"></app-input>
+        <app-table
+          (usersSelected)="usersSelectedStatusChange($event)"
+          [changeStatus]="changeStatus"
+        ></app-table>
       </div>
     </mat-drawer-content>
   </mat-drawer-container>

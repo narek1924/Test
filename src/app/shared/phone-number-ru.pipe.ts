@@ -4,15 +4,16 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'phoneNumberRu',
 })
 export class PhoneNumberRuPipe implements PipeTransform {
-  transform(value: string): unknown {
+  transform(value: number): unknown {
+    let phoneNum = value.toString();
     return (
       '+' +
-      value.charAt(0) +
+      phoneNum.charAt(0) +
       '(' +
-      value.substring(1, 4) +
+      phoneNum.substring(1, 4) +
       ')' +
       ' ' +
-      value.slice(4)
+      phoneNum.slice(4)
     );
   }
 }

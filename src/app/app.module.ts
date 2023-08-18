@@ -12,6 +12,7 @@ import { TableComponent } from './dashboard/table/table.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoadingSpinnerComponent } from './shared/loading-spinner/loading-spinner.component';
 import { PhoneNumberRuPipe } from './shared/phone-number-ru.pipe';
+import { CustomDatePipe } from './shared/custom-date.pipe';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { PhoneNumberRuPipe } from './shared/phone-number-ru.pipe';
     TableComponent,
     LoadingSpinnerComponent,
     PhoneNumberRuPipe,
+    CustomDatePipe,
   ],
   imports: [
     BrowserModule,

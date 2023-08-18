@@ -31,3 +31,14 @@
 .radio-button {
   margin-right: 7px;
 }
+@media (max-width: 550px) {
+  .header {
+    text-align: center;
+  }
+  .controls {
+    padding: 10px 30px;
+  }
+  .control {
+    width: 100%;
+  }
+}
